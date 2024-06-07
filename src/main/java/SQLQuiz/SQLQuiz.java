@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.Scanner;
 
 public class SQLQuiz {
+
     public static void main(String[] args) throws ClassNotFoundException {
 
         // Database connection details
@@ -99,7 +100,7 @@ public class SQLQuiz {
         }
     }
 
-    private static void storeScore(Connection connection, String name, int score) {
+    public static void storeScore(Connection connection, String name, int score) {
 
         String insertQuery = "INSERT INTO scores(name, score) VALUES (?, ?)";
         try (PreparedStatement createStatement = connection.prepareStatement(insertQuery)) {
@@ -111,8 +112,8 @@ public class SQLQuiz {
         }
     }
 
-    private static void displayScores (Connection connection) {
-        String selectQuery = "SELECT name, score FROM scores ORDER BY score";
+    public static void displayScores (Connection connection) {
+        String selectQuery = "SELECT name, score FROM scores ORDER BY score DESC";
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(selectQuery)) {
             System.out.println("Leaderboard:");
